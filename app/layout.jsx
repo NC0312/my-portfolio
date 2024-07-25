@@ -32,7 +32,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { icons } from "lucide-react";
-import PageTransition from "@/components/ui/pageTransition";
+import PageTransition from "@/components/ui/PageTransition";
 import StairTransition from "@/components/ui/StairTransition";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] , weight:["100","200","300","400","500","600","700","800"],
