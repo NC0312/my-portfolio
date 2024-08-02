@@ -40,8 +40,8 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] , weight:["100","200",
 });
 
 export const metadata = {
-  title: "Niket .",
-  description: "This is my portfolio website made using NextJS.",
+  title: "Niket . Chawla",
+  description: "This is my portfolio website Niket Chawla made using NextJS.",
   icons: {
     icon: '/assets/logo.png',
   },
