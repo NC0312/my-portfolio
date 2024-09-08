@@ -13,7 +13,7 @@ const Home = () => {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Developer</span>
             <h1 className="h1 mb-6">Hello I'm <br /> <span className="text-accent">Niket Chawla</span></h1>
-            <p className="max-w-[500px] mb-9 text-white/80">Final Year CSE Student | MERN Stack Developer | NextJS | Core Java | Proactive Learner & Team Player | Seeking Internship/Full-Time Opportunity in Dynamic Tech Environments | Chitkara University</p>
+            <p className="max-w-[500px] mb-9 text-white/80">Software Engineering Intern at Twinline Business Solutions | Java Developer | MERN Stack & Next.js Enthusiast</p>
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <Link href="/assets/resume.pdf" download>
               <Button variant="outline" size="lg" className="uppercase flex items-center gap-2">
