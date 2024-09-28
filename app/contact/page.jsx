@@ -95,28 +95,28 @@ const Contact = () => {
       formData,
       '3lOmOmnkBPjw-bYSN'
     )
-    .then((result) => {
-      console.log(result.text);
-      setSuccess(true); // Show success popup
-      setTimeout(() => setSuccess(false), 3000); // Hide popup after 3 seconds
+      .then((result) => {
+        console.log(result.text);
+        setSuccess(true); // Show success popup
+        setTimeout(() => setSuccess(false), 3000); // Hide popup after 3 seconds
 
-      // Reset form
-      setFormData({
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
+        // Reset form
+        setFormData({
+          firstname: '',
+          lastname: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.log(error.text);
+        setError('Failed to send message, please try again.');
+      })
+      .finally(() => {
+        setIsSending(false); // Re-enable the button after the process
       });
-    })
-    .catch((error) => {
-      console.log(error.text);
-      setError('Failed to send message, please try again.');
-    })
-    .finally(() => {
-      setIsSending(false); // Re-enable the button after the process
-    });
   };
 
   return (
@@ -126,10 +126,15 @@ const Contact = () => {
       className='py-6'
     >
       <div className="container mx-auto">
+
+
+
         {error && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="bg-red-500 text-white p-4 rounded-md mb-4"
           >
             {error}
@@ -140,22 +145,32 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="bg-green-500 text-white p-4 rounded-md mb-4"
           >
             Message sent successfully!
           </motion.div>
         )}
 
+
+
+        <motion.div
+          initial={{ y: 0 }}
+          animate={{ y: error || success ? 50 : 0 }} // Smooth transition of form downwards when popup is visible
+          transition={{ duration: 0.6, ease: "easeInOut" }} // Smooth form movement when the popup disappears
+        >
         <div className='flex flex-col xl:flex-row gap-[30px]'>
           <div className='xl:h-[54%] order-2 xl:order-none'>
+
             <form onSubmit={handleSubmit} className='flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl'>
               <h3 className='text-4xl text-accent'>Let's work together</h3>
               <p className='text-white/60'>Connect, by contacting me!!</p>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <Input type='text' name='firstname' value={formData.firstname} onChange={handleChange} placeholder='Firstname' required/>
+                <Input type='text' name='firstname' value={formData.firstname} onChange={handleChange} placeholder='Firstname' required />
                 <Input type='text' name='lastname' value={formData.lastname} onChange={handleChange} placeholder='Lastname' />
                 <Input type='email' name='email' value={formData.email} onChange={handleChange} placeholder='Email address' required />
-                <Input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder='Phone number' maxlength='10' required/>
+                <Input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder='Phone number' maxlength='10' required />
               </div>
 
               <Select onValueChange={handleServiceChange} value={formData.service}>
@@ -206,9 +221,11 @@ const Contact = () => {
               })}
             </ul>
           </div>
+
         </div>
-      </div>
-    </motion.section>
+        </motion.div>
+    </div >
+    </motion.section >
   );
 };
 
