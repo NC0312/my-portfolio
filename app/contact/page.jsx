@@ -57,6 +57,11 @@ const Contact = () => {
     }));
   };
 
+  // Validates if the phone number contains all repeated digits
+  const isRepeatedNumber = (phone) => {
+    return /^(\d)\1{9}$/.test(phone); // Checks if the same digit repeats 10 times
+  };
+
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
@@ -64,7 +69,7 @@ const Contact = () => {
 
   const validatePhone = (phone) => {
     const phonePattern = /^[6-9]\d{9}$/;
-    return phonePattern.test(phone);
+    return phonePattern.test(phone) && !isRepeatedNumber(phone); // Added check for repeated numbers
   };
 
   const handleSubmit = (e) => {
@@ -76,7 +81,7 @@ const Contact = () => {
     }
 
     if (!validatePhone(formData.phone)) {
-      setError('Invalid phone number. It should be 10 digits and start with 6 or above.');
+      setError('Invalid phone number. It should be 10 digits, start with 6 or above, and not consist of repeating digits.');
       return;
     }
 
