@@ -1,6 +1,6 @@
 "use client";
 
-import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker,FaGit } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker,FaGit, FaFigma, FaAws, FaStripe } from 'react-icons/fa';
 import { SiTailwindcss, SiNextdotjs,SiJira} from 'react-icons/si';
 
 const about = {
@@ -97,13 +97,10 @@ const skills={
       icon:<FaDatabase/>,
       name:"Mongo DB",
     },
+    
     {
-      icon:<SiJira/>,
-      name:"Jira",
-    },
-    {
-      icon:<FaGit/>,
-      name:"Git",
+      icon:<FaFigma/>,
+      name:"Figma",
     },
     {
       icon:<SiTailwindcss/>,
@@ -112,6 +109,24 @@ const skills={
     {
       icon:<FaJs/>,
       name:"Javascript",
+    },
+    {
+      icon:<FaAws/>,
+      name:'AWS',
+    },
+    {
+      icon:<FaStripe/>,
+      name:'Stripe',
+    },
+    
+    {
+      icon:<FaGit/>,
+      name:"Git",
+    },
+   
+    {
+      icon:<SiJira/>,
+      name:"Jira",
     },
     {
       icon:<FaDocker/>,
