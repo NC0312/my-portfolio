@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -24,9 +21,9 @@ const Photo = () => {
           }}
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50 z-10 rounded-full"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50 z-10 rounded-full"></div> */}
           <Image
-            src="/assets/profile.png"
+            src="/assets/profile-image.jpg"
             priority
             quality={100}
             fill 
