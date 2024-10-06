@@ -47,7 +47,7 @@ const experience = {
   items: [
     {
       company: 'Twinline Business Solutions',
-      position: 'Full Stack Java Developer',
+      position: 'Java Software Developer',
       duration: 'Aug 2024 - Present',
       logo: '/assets/company1.png',
       linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
