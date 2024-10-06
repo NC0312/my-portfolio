@@ -49,6 +49,7 @@ const experience = {
       company: 'Twinline Business Solutions',
       position: 'Java Software Developer',
       duration: 'Aug 2024 - Present',
+      location:'Gurugram,Haryana',
       logo: '/assets/company1.png',
       linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
     },
@@ -139,6 +140,27 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { motion } from 'framer-motion';
 import { BsArrowDownRight } from 'react-icons/bs';
 
+
+const calculateTenure = (startDate) => {
+  const start = new Date(startDate);
+  const now = new Date();
+  const diffTime = Math.abs(now - start);
+  const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44)); 
+  
+  if (diffMonths >= 12) {
+    const years = Math.floor(diffMonths / 12);
+    const months = diffMonths % 12;
+    if (months === 0) {
+      return years === 1 ? '1 yr' : `${years} yrs`;
+    }
+    return years === 1 
+      ? `1 yr ${months} ${months === 1 ? 'mo' : 'mos'}`
+      : `${years} yrs ${months} ${months === 1 ? 'mo' : 'mos'}`;
+  } else {
+    return diffMonths === 1 ? '1 mo' : `${diffMonths} mos`;
+  }
+};
+
 const Resume = () => {
   return (
     <motion.div
@@ -167,17 +189,18 @@ const Resume = () => {
                 <ScrollArea className="h-[400px]">
                   <ul className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
                     {experience.items.map((item, index) => {
+                      const [startDate] = item.duration.split(' - ');
+                      const tenure = calculateTenure(startDate);
                       return (
                         <li key={index} className='relative bg-[#232329] h-[184px] w-[450px] py-2 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
-                          <span className='text-accent'>{item.duration}</span>
+                          <span className='text-accent'>{item.duration} · {tenure}</span>
                           <h3 className='text-xl min-h-[60px] text-center lg:text-left'>{item.position}</h3>
                           <div className='flex items-center gap-3'>
                             <span className='w-[6px] h-[6px] rounded-full bg-accent'></span>
                             <p className='text-white/60'>{item.company}</p>
                           </div>
-
+                          <p className='text-white/40 text-sm ml-[18px]'>{item.location}</p>
                           <img src={item.logo} alt={`${item.company} logo`} className='absolute bottom-5 right-10 w-[50px] h-[50px] object-contain border-[2px]' />
-
                           <div className='absolute top-5 right-5 group'>
                             <a href={item.linkedin}
                               target='_blank'
@@ -187,12 +210,13 @@ const Resume = () => {
                             </a>
                           </div>
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </ScrollArea>
               </div>
             </TabsContent>
+
             <TabsContent value='education' className='w-full'>
               <div className='flex flex-col gap-[30px] text-center xl:text-left'>
                 <h3 className='text-4xl font-bold'>{education.title}</h3>
