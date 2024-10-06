@@ -180,9 +180,11 @@ const Contact = () => {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Select a Service</SelectLabel>
+                    <SelectItem value='Java Software Development(SpringBoot,Hibernate)'>Java Software Development(SpringBoot,Hibernate)</SelectItem>
+                    <SelectItem value='UI Development'>UI Development</SelectItem>
                     <SelectItem value='MERN Stack Web Development'>MERN Stack Web Development</SelectItem>
                     <SelectItem value='NextJS Web Development'>NextJS Web Development</SelectItem>
-                    <SelectItem value='Core Java Development'>Core Java Development</SelectItem>
+                    <SelectItem value='ReactJS Web Development'>ReactJS Web Development</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
