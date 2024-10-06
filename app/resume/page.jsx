@@ -117,22 +117,8 @@ const skills = {
       name: 'AWS',
     },
     {
-      icon: <FaStripe />,
-      name: 'Stripe',
-    },
-
-    {
       icon: <FaGit />,
       name: "Git",
-    },
-
-    {
-      icon: <SiJira />,
-      name: "Jira",
-    },
-    {
-      icon: <FaDocker />,
-      name: "Docker",
     },
     {
       icon: <FaCss3 />,
