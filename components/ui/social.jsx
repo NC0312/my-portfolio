@@ -41,7 +41,7 @@ const Social = ({ containerStyles, iconStyles }) => {
               hoveredIndex === index ? item.gradient : "transparent",
             color: hoveredIndex === index ? item.color : "inherit", 
             transition: "all 0.3s ease", 
-            padding: "10px", 
+            padding: "9px", 
             borderRadius: "50%", 
             display: "inline-block", 
           }}

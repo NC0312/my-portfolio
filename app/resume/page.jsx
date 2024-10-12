@@ -49,7 +49,7 @@ const experience = {
       company: 'Twinline Business Solutions',
       position: 'Java Software Developer',
       duration: 'Aug 2024 - Present',
-      location:'Gurugram,Haryana',
+      location: 'Gurugram,Haryana',
       logo: '/assets/company1.png',
       linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
     },
@@ -63,16 +63,28 @@ const education = {
     {
       institution: "Chitkara University",
       position: "BTech-CSE",
-      cgpa: "CGPA - 9.50"
+      cgpa: "CGPA - 9.50",
+      duration: '2020-2024',
+      logo: 'assets/chitkara.jpeg',
+      linkedin: 'https://www.linkedin.com/school/chitkara-university/',
+      location: 'Rajpura,Punjab'
     },
     {
       institution: "R.S.D Raj Rattan Public School",
       position: "Senior-Secondary",
-      cgpa: "Percentage - 81.8%"
+      cgpa: "Percentage - 81.8%",
+      duration: '2020',
+      logo: 'assets/rsd.png',
+      linkedin: 'https://www.facebook.com/profile.php?id=100006535662878&mibextid=ZbWKwL',
+      location: 'Ferozepur City,Punjab'
     }, {
       institution: "DCM International School",
       position: "Secondary",
-      cgpa: "Percentage - 79.8%"
+      cgpa: "Percentage - 79.8%",
+      duration: '2018',
+      logo: 'assets/dcm.webp',
+      linkedin: 'https://www.linkedin.com/school/thedcmgroupofschools/',
+      location: 'Ferozepur City,Punjab'
     }
   ]
 }
@@ -145,15 +157,15 @@ const calculateTenure = (startDate) => {
   const start = new Date(startDate);
   const now = new Date();
   const diffTime = Math.abs(now - start);
-  const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44)); 
-  
+  const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44));
+
   if (diffMonths >= 12) {
     const years = Math.floor(diffMonths / 12);
     const months = diffMonths % 12;
     if (months === 0) {
       return years === 1 ? '1 yr' : `${years} yrs`;
     }
-    return years === 1 
+    return years === 1
       ? `1 yr ${months} ${months === 1 ? 'mo' : 'mos'}`
       : `${years} yrs ${months} ${months === 1 ? 'mo' : 'mos'}`;
   } else {
@@ -217,25 +229,57 @@ const Resume = () => {
               </div>
             </TabsContent>
 
+
             <TabsContent value='education' className='w-full'>
               <div className='flex flex-col gap-[30px] text-center xl:text-left'>
                 <h3 className='text-4xl font-bold'>{education.title}</h3>
                 <ScrollArea className="h-[400px]">
                   <ul className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
                     {education.items.map((item, index) => {
-                      return <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
-                        <span className='text-accent mt-3'>{item.position}</span>
-                        <h3 className='text-xl max-w-[260px] min-h-[60px] font-bold  text-center lg:text-left mb-5 mt-3 '>{item.institution}</h3>
-                        <div className='flex items-center gap-3'>
-                          <span className='w-[6px] h-[6px] rounded-full bg-accent mb-3'></span>
-                          <p className='text-white/60 mb-3'>{item.cgpa}</p>
-                        </div>
-                      </li>
+                      return (
+                        <li key={index} className='relative bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                          {/* Position and duration */}
+                          <span className='text-accent mt-3'>
+                            {item.position} <span>({item.duration})</span>
+                          </span>
+                          {/* Institution */}
+                          <h3 className='text-xl max-w-[260px] min-h-[60px] font-bold text-center lg:text-left mt-1'>
+                            {item.institution}
+                          </h3>
+                          {/* Location (directly under institution) */}
+                          <p className='text-sm text-white/50 mt-1 mb-2'>
+                            {item.location}
+                          </p>
+                          {/* CGPA */}
+                          <div className='flex items-center gap-2'>
+                            <span className='w-[6px] h-[6px] rounded-full bg-accent mb-2'></span>
+                            <p className='text-white/60 mb-2'>{item.cgpa}</p>
+                          </div>
+                          {/* Logo (conditionally rendered) */}
+                          {item.logo && (
+                            <img
+                              src={item.logo}
+                              alt={`${item.institution} logo`}
+                              className='absolute bottom-5 right-5 w-[50px] h-[50px] object-contain rounded-[8px]'
+                            />
+                          )}
+                          <div className='absolute top-5 right-5 group'>
+                            <a href={item.linkedin || '#'}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='w-[40px] h-[40px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
+                              <BsArrowDownRight className='text-primary text-xl' />
+                            </a>
+                          </div>
+                        </li>
+                      );
                     })}
                   </ul>
                 </ScrollArea>
               </div>
             </TabsContent>
+
+
 
             <TabsContent value='skills' className='w-full h-full'>
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
