@@ -7,6 +7,7 @@
   body{
     @apply font-primary bg-primary text-white leading-loose;
   }
+  
   .h1{
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
   }
@@ -24,5 +25,62 @@
     -webkit-text-stroke:1px #00ff99;
     /* cursor: pointer; */
   }
+
+  h1::selection{
+    background-color: #00ff99;
+    color: white;
+  }
+  span::selection{
+    background-color: #00ff99;
+    color: white;
+  }
+  h2::selection{
+    background-color: #00ff99;
+    color: white;
+  }
+  h3::selection{
+    background-color: #00ff99;
+    color: white;
+  }
+  img::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+  input::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+  
+  ul::selection{
+    background-color: #00ff99;
+    color: #ffffff;
+  }
+  Textarea::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+
+  li::selection{
+    background-color: #00ff99;
+    color: #ffffff;
+  }
+  button::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+  Link::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+  div::selection{
+    background-color: #00ff99;
+    color: #fff;
+  }
+  p::selection{
+    background-color: #00ff99;
+    color: white;
+  }
+
+  
 }
 
