@@ -23,7 +23,7 @@ const Photo = () => {
         >
           {/* <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50 z-10 rounded-full"></div> */}
           <Image
-            src="/assets/profile-image.jpg"
+            src="/assets/profile-image.jpeg"
             priority
             quality={100}
             fill 
