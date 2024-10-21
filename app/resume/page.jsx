@@ -1,7 +1,8 @@
 "use client";
 
 import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker, FaGit, FaFigma, FaAws, FaStripe } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiJira } from 'react-icons/si';
+import { SiTailwindcss, SiNextdotjs, SiHibernate , SiSpring } from 'react-icons/si';
+
 
 const about = {
   title: "About me",
@@ -94,7 +95,15 @@ const skills = {
   skillList: [
     {
       icon: <FaJava />,
-      name: "Java/Springboot/Hibernate",
+      name: "Java",
+    },
+    {
+      icon:<SiSpring/>,
+      name:"Springboot",
+    },
+    {
+      icon:<SiHibernate/>,
+      name:"Hibernate",
     },
     {
       icon: <SiNextdotjs />,
@@ -133,14 +142,14 @@ const skills = {
       icon: <FaGit />,
       name: "Git",
     },
-    {
-      icon: <FaCss3 />,
-      name: "CSS3",
-    },
-    {
-      icon: <FaHtml5 />,
-      name: "HTML5",
-    },
+    // {
+    //   icon: <FaCss3 />,
+    //   name: "CSS3",
+    // },
+    // {
+    //   icon: <FaHtml5 />,
+    //   name: "HTML5",
+    // },
   ]
 }
 
