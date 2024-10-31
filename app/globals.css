@@ -80,19 +80,16 @@
     background-color: #00ff99;
     color: white;
   }
+
   ::-webkit-scrollbar {
     display: none;
   }
   
-  /* For Firefox */
+  /* Firefox */
   * {
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
-  
-  /* Optional: make overflow scrollable */
-  html, body {
-    overflow: hidden;
-  }
+ 
   
 }
 
