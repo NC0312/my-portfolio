@@ -203,6 +203,7 @@ const Contact = () => {
                     name='message'
                     value={formData.message}
                     onChange={handleChange}
+                    required
                   />
                   <Button
                     type='submit'
