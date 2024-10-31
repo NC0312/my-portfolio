@@ -271,36 +271,37 @@ const Resume = () => {
 
 
             {/* Skills TAB =====START */}
-            <TabsContent value='skills' className='w-full h-full'>
+            <TabsContent value='skills' className='w-full'>
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <div>
-                  <h3 className='text-4xl font-bold'>{skills.title}</h3>
-                </div>
-
-                {skills.sections.map((section, sectionIndex) => (
-                  <div key={sectionIndex} className="mt-7">
-                    <h4 className="text-2xl font-semibold mb-5">{section.title}</h4>
-                    <ul className='grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-[30px]'>
-                      {section.skillList.map((skill, skillIndex) => (
-                        <li key={skillIndex}>
-                          <TooltipProvider delayDuration={100}>
-                            <Tooltip>
-                              <TooltipTrigger className='w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group'>
-                                <div className='text-6xl group-hover:text-accent transition-all duration-300'>{skill.icon}</div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>{skill.name}</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                <h3 className='text-4xl font-bold'>{skills.title}</h3>
+                <ScrollArea className="h-[500px]">
+                  {/* Render each skill section */}
+                  {skills.sections.map((section, sectionIndex) => (
+                    <div key={sectionIndex} className="mt-7">
+                      <h4 className="text-3xl font-semibold mb-5">{section.title}</h4>
+                      <ul className='grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-[30px]'>
+                        {section.skillList.map((skill, skillIndex) => (
+                          <li key={skillIndex}>
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className='w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group'>
+                                  <div className='text-6xl group-hover:text-accent transition-all duration-300'>{skill.icon}</div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{skill.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </ScrollArea>
               </div>
             </TabsContent>
             {/* Skills TAB =====END */}
+
 
 
             {/* About TAB =====START */}
@@ -323,7 +324,7 @@ const Resume = () => {
           </div>
         </Tabs>
       </div>
-       {/* About TAB =====END */}
+      {/* About TAB =====END */}
 
     </motion.div>
   )
