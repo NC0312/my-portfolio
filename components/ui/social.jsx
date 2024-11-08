@@ -47,6 +47,7 @@ const Social = ({ containerStyles, iconStyles }) => {
           }}
           onMouseEnter={() => setHoveredIndex(index)} 
           onMouseLeave={() => setHoveredIndex(null)} 
+          target="_blank"
         >
           {item.icon}
         </Link>
