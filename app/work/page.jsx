@@ -21,6 +21,16 @@ import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
 const projects=[
   {
     num:"01",
+    category:"Tripify",
+    title:"Tripify",
+    description:"AI-powered travel planner built with React.js and Firebase, leveraging Google Maps API and Google Gemini for personalized trip recommendations",
+    stack:[{name:"ReactJS"},{name:"Firebase"},{name:"Gemini/Google Maps API"}],
+    image:"/assets/work/tripify.png",
+    live:"https://tripify-web.vercel.app/",
+    github:"https://github.com/NC0312/tripify-web-app"
+  },
+  {
+    num:"02",
     category:"Tomato",
     title:"Tomato",
     description:"Food Delivery/Restaurant Website made using MERN Stack involving features like admin panel and payment gateway.",
@@ -30,7 +40,7 @@ const projects=[
     github:'https://github.com/NC0312/tomato-food-app'
   },
   {
-    num:"02",
+    num:"03",
     category:"Textify",
     description:"Textify is a chat web application made using MERN Stack and Sockets making chat realtime.",
     stack:[{name:"MERN Stack"},{name:"Sockets"}],
@@ -70,7 +80,7 @@ const Work = () => {
             </ul>
             <div className="border border-white/20"></div>
             <div className="flex items-center gap-4">
-              <Link href={project.live}>
+              <Link href={project.live} target="_blank">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
@@ -81,7 +91,7 @@ const Work = () => {
                 </TooltipProvider>
               </Link>
 
-              <Link href={project.github}>
+              <Link href={project.github} target="_blank">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
