@@ -4,41 +4,43 @@ import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker,
 import {SiVercel , SiGooglecloud,SiTailwindcss, SiNextdotjs, SiHibernate, SiSpringboot, SiMongodb, SiMysql ,SiShadcnui,SiFramer,SiTypescript   } from 'react-icons/si';
 import { RiFirebaseFill } from "react-icons/ri";
 
+const calculateTenure = (startDate) => {
+  const start = new Date(startDate);
+  const now = new Date();
+  const diffTime = Math.abs(now - start);
+  const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44));
+
+  if (diffMonths >= 12) {
+    const years = Math.floor(diffMonths / 12);
+    const months = diffMonths % 12;
+    if (months === 0) {
+      return years === 1 ? '1 yr' : `${years} yrs`;
+    }
+    return years === 1
+      ? `1 yr ${months} ${months === 1 ? 'mo' : 'mos'}`
+      : `${years} yrs ${months} ${months === 1 ? 'mo' : 'mos'}`;
+  } else {
+    return diffMonths === 1 ? '1 mo' : `${diffMonths} mos`;
+  }
+};
+
+
 const about = {
   title: "About me",
   description:
-    "Software Engineering Intern at Twinline Business Solutions | Java Developer | MERN Stack & Next.js Enthusiast",
+    "Java Software Developer at Twinline Business Solutions | MERN Stack & Next.js Enthusiast",
+
   info: [
-    {
-      fieldName: "Name",
-      fieldValue: "Niket Chawla",
-    },
-    {
-      fieldName: "Phone",
-      fieldValue: "(+91) 77194 17720",
-    },
-    {
-      fieldName: "Experience",
-      fieldValue: "3-4 Years",
-    },
-    {
-      fieldName: "Email",
-      fieldValue: "contactniketchawla@gmail.com",
-    },
-    {
-      fieldName: "Nationality",
-      fieldValue: "Indian",
-    },
-    {
-      fieldName: "Linkedin",
-      fieldValue: "https://www.linkedin.com/in/Niket-Chawla/",
-    },
-    {
-      fieldName: "Github",
-      fieldValue: "https://github.com/NC0312"
-    }
+    { fieldName: "Name", fieldValue: "Niket Chawla" },
+    { fieldName: "Phone", fieldValue: "(+91) 77194 17720" },
+    { fieldName: "Experience", fieldValue: calculateTenure("2024-08") },
+    { fieldName: "Email", fieldValue: "contactniketchawla@gmail.com" },
+    { fieldName: "Nationality", fieldValue: "Indian" },
+    { fieldName: "Linkedin", fieldValue: "https://www.linkedin.com/in/Niket-Chawla/" },
+    { fieldName: "Github", fieldValue: "https://github.com/NC0312" }
   ]
 };
+
 
 const experience = {
   icon: '/assets/resume/badge.svg',
@@ -142,25 +144,6 @@ import { motion } from 'framer-motion';
 import { BsArrowDownRight } from 'react-icons/bs';
 
 
-const calculateTenure = (startDate) => {
-  const start = new Date(startDate);
-  const now = new Date();
-  const diffTime = Math.abs(now - start);
-  const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44));
-
-  if (diffMonths >= 12) {
-    const years = Math.floor(diffMonths / 12);
-    const months = diffMonths % 12;
-    if (months === 0) {
-      return years === 1 ? '1 yr' : `${years} yrs`;
-    }
-    return years === 1
-      ? `1 yr ${months} ${months === 1 ? 'mo' : 'mos'}`
-      : `${years} yrs ${months} ${months === 1 ? 'mo' : 'mos'}`;
-  } else {
-    return diffMonths === 1 ? '1 mo' : `${diffMonths} mos`;
-  }
-};
 
 const Resume = () => {
   return (
