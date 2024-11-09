@@ -1,8 +1,8 @@
 "use client";
 
 import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker, FaGit, FaFigma, FaAws, FaStripe } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiHibernate, SiSpring, SiMongodb, SiMysql } from 'react-icons/si';
-
+import {SiVercel , SiGooglecloud,SiTailwindcss, SiNextdotjs, SiHibernate, SiSpringboot, SiMongodb, SiMysql ,SiShadcnui,SiFramer,SiTypescript   } from 'react-icons/si';
+import { RiFirebaseFill } from "react-icons/ri";
 
 const about = {
   title: "About me",
@@ -94,30 +94,39 @@ const skills = {
   title: "My Skills",
   sections: [
     {
-      title: "Backend",
-      skillList: [
-        { icon: <FaJava />, name: "Java" },
-        { icon: <SiSpring />, name: "Spring Boot" },
-        { icon: <SiHibernate />, name: "Hibernate" },
-        { icon: <FaNodeJs />, name: "Node JS" },
-      ],
-    },
-    {
       title: "Frontend/UI",
       skillList: [
         { icon: <FaReact />, name: "React JS" },
-        { icon: <SiNextdotjs />, name: "Next JS" },
-        { icon: <FaFigma />, name: "Figma" },
         { icon: <FaJs />, name: "JavaScript" },
+        { icon: <SiNextdotjs />, name: "Next JS" },
+        {icon:<SiTypescript />,name:"TypeScript"},
+        {icon: <SiTailwindcss />,name:"Tailwind"},
+        {icon:<SiShadcnui />,name:"Shadcn"},
+        {icon:<SiFramer />,name:"Framer"},
+        { icon: <FaFigma />, name: "Figma" },
       ],
     },
-
+    
     {
-      title: "Database & Cloud",
+      title: "Database/Cloud",
       skillList: [
         { icon: <SiMysql />, name: "MySQL" },
         { icon: <SiMongodb />, name: "MongoDB" },
         { icon: <FaAws />, name: "AWS" },
+        {icon:<SiGooglecloud/>,name:"Google Cloud"},
+        { icon :<RiFirebaseFill />,name:"Firebase"},
+        {icon:<SiVercel />,name:"Vercel"},
+        {icon:<FaGit/>,name:"Git"},
+        {icon:<FaDocker/>,name:"Docker"}
+      ],
+    },
+    {
+      title: "Backend",
+      skillList: [
+        { icon: <FaJava />, name: "Java" },
+        { icon: <SiSpringboot/>, name: "Spring Boot" },
+        { icon: <SiHibernate />, name: "Hibernate" },
+        { icon: <FaNodeJs />, name: "Node JS" },
       ],
     },
   ],
