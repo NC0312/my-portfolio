@@ -23,7 +23,7 @@ const projects=[
     num:"01",
     category:"Tripify",
     title:"Tripify",
-    description:"AI-powered travel planner built with React.js and Firebase, leveraging Google Maps API and Google Gemini for personalized trip recommendations",
+    description:"AI-powered travel planner built with React.js , Firebase , Google Maps API and Google Gemini recommendations",
     stack:[{name:"ReactJS"},{name:"Firebase"},{name:"Gemini/Google Maps API"}],
     image:"/assets/work/tripify.png",
     live:"https://tripify-web.vercel.app/",
