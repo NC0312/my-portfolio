@@ -1,8 +1,9 @@
 "use client";
 
 import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker, FaGit, FaFigma, FaAws, FaStripe } from 'react-icons/fa';
-import {SiVercel , SiGooglecloud,SiTailwindcss, SiNextdotjs, SiHibernate, SiSpringboot, SiMongodb, SiMysql ,SiShadcnui,SiFramer,SiTypescript   } from 'react-icons/si';
+import {SiVercel , SiGooglecloud,SiTailwindcss, SiNextdotjs, SiHibernate, SiSpringboot, SiMongodb, SiMysql ,SiShadcnui,SiFramer,SiTypescript,SiExpress    } from 'react-icons/si';
 import { RiFirebaseFill } from "react-icons/ri";
+import { TbBrandCpp } from "react-icons/tb";
 
 const calculateTenure = (startDate) => {
   const start = new Date(startDate);
@@ -129,6 +130,8 @@ const skills = {
         { icon: <SiSpringboot/>, name: "Spring Boot" },
         { icon: <SiHibernate />, name: "Hibernate" },
         { icon: <FaNodeJs />, name: "Node JS" },
+        {icon:<SiExpress />,name:"Express JS"},
+        {icon:<TbBrandCpp />,name:"C++"}
       ],
     },
   ],
