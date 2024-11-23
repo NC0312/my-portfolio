@@ -20,8 +20,8 @@ const info = [
   },
   {
     icon: <FaMapMarkerAlt />,
-    title: 'Address',
-    description: '#35, Bedi Green Avenue, Ferozepur city',
+    title: 'Location',
+    description: 'Punjab,India',
   }
 ]
 
