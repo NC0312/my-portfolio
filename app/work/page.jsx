@@ -20,7 +20,17 @@ import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
 
 const projects=[
   {
-    num:"01",
+    num: "01",
+    category:"Building Social It Up",
+    title:"Building Social It Up",
+    description:"Cloning the website of a marketing company, Social It Up Using NextJS , Shadcn , tailwind and Framer Motion",
+    stack:[{name:"NextJS"},{name:"Shadcn"},{name:"Framer Motion"},{name:"Tailwind CSS"}],
+    image:"/assets/work/social-it-up.png",
+    live:"https://social-it-up.vercel.app/",
+    github:"https://github.com/NC0312/social-it-up",
+  },
+  {
+    num:"02",
     category:"Tripify",
     title:"Tripify",
     description:"AI-powered travel planner built with React.js, Firebase,Google Maps API and Gemini Recommendations",
@@ -30,7 +40,7 @@ const projects=[
     github:"https://github.com/NC0312/tripify-web-app"
   },
   {
-    num:"02",
+    num:"03",
     category:"Tomato",
     title:"Tomato",
     description:"Food Delivery/Restaurant Website made using MERN Stack involving features like admin panel and payment gateway.",
@@ -40,7 +50,7 @@ const projects=[
     github:'https://github.com/NC0312/tomato-food-app'
   },
   {
-    num:"03",
+    num:"04",
     category:"Textify",
     description:"Textify is a chat web application made using MERN Stack and Sockets making chat realtime.",
     stack:[{name:"MERN Stack"},{name:"Sockets"}],
