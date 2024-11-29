@@ -105,7 +105,7 @@ const skills = {
         {icon:<SiTypescript />,name:"TypeScript"},
         {icon: <SiTailwindcss />,name:"Tailwind"},
         {icon:<SiShadcnui />,name:"Shadcn"},
-        {icon:<SiFramer />,name:"Frame Motion"},
+        {icon:<SiFramer />,name:"Framer Motion"},
         { icon: <FaFigma />, name: "Figma" },
       ],
     },
