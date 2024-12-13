@@ -21,10 +21,10 @@ import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
 const projects=[
   {
     num: "01",
-    category:"Building Social It Up",
-    title:"Building Social It Up",
-    description:"Cloning the website of a marketing company, Social It Up Using NextJS , Shadcn , tailwind and Framer Motion",
-    stack:[{name:"NextJS"},{name:"Shadcn"},{name:"Framer Motion"},{name:"Tailwind CSS"}],
+    category:"Social It Up Clone",
+    title:"Social It Up Clone",
+    description:"Cloning the website of a marketing company, Social It Up With some Additional Features",
+    stack:[{name:"NextJS"},{name:"Firebase"},{name:"Framer Motion"},{name:"Tailwind CSS"}],
     image:"/assets/work/social-it-up.png",
     live:"https://social-it-up.vercel.app/",
     github:"https://github.com/NC0312/social-it-up",
