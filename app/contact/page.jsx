@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser'; // Removed emailjs import
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
@@ -73,7 +73,7 @@ const Contact = () => {
     return phonePattern.test(phone) && !isRepeatedNumber(phone); // Added check for repeated numbers
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(formData.email)) {
@@ -90,34 +90,43 @@ const Contact = () => {
     setError('');
     setIsSending(true);
 
-    emailjs.send(
-      'service_3cnsl1p',
-      'template_rh4lhlj',
-      formData,
-      '3lOmOmnkBPjw-bYSN'
-    )
-      .then((result) => {
-        console.log(result.text);
-        setSuccess(true); // Show success popup
-        setTimeout(() => setSuccess(false), 3000); // Hide popup after 3 seconds
-
-        // Reset form
-        setFormData({
-          firstname: '',
-          lastname: '',
-          email: '',
-          phone: '',
-          service: '',
-          message: ''
-        });
-      })
-      .catch((error) => {
-        console.log(error.text);
-        setError('Failed to send message, please try again.');
-      })
-      .finally(() => {
-        setIsSending(false); // Re-enable the button after the process
+    try {
+      // Send confirmation email to the user
+      await fetch('/api/send-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      // Send notification email to you
+      await fetch('/api/send-notification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      setSuccess(true); // Show success popup
+      setTimeout(() => setSuccess(false), 3000); // Hide popup after 3 seconds
+
+      // Reset form
+      setFormData({
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to send message, please try again.');
+    } finally {
+      setIsSending(false); // Re-enable the button after the process
+    }
   };
 
   return (
