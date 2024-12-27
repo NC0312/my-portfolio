@@ -4,16 +4,13 @@ import path from 'path';
 
 export async function POST(req) {
     try {
-        console.log('Received contact form submission');
+        console.log('Received request for confirmation email');
 
-        const { firstname, lastname, email, phone, service, message } = await req.json();
+        const { firstname, lastname, email, service } = await req.json();
 
-        console.log('Name:', `${firstname} ${lastname}`);
-        console.log('Email:', email);
-        console.log('Phone:', phone);
-        console.log('Service:', service);
+        console.log('Sending confirmation to:', email);
 
-        if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+        if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD || !process.env.SMTP_FROM_EMAIL) {
             console.error('Missing SMTP configuration');
             return NextResponse.json(
                 { error: 'Server configuration error' },
@@ -21,7 +18,6 @@ export async function POST(req) {
             );
         }
 
-        console.log('Creating transporter with host:', process.env.SMTP_HOST);
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: parseInt(process.env.SMTP_PORT || '587'),
@@ -57,31 +53,14 @@ export async function POST(req) {
             const info = await transporter.sendMail(mailOptions);
             console.log('Confirmation email sent successfully:', info.messageId);
 
-            const notificationMailOptions = {
-                from: process.env.SMTP_FROM_EMAIL,
-                to: process.env.SMTP_USER,
-                subject: 'New Contact Form Submission',
-                html: `
-                    <h1>New Contact Form Submission</h1>
-                    <p><strong>Name:</strong> ${firstname} ${lastname}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
-                    <p><strong>Service:</strong> ${service}</p>
-                    <p><strong>Message:</strong> ${message}</p>
-                `,
-            };
-
-            await transporter.sendMail(notificationMailOptions);
-            console.log('Notification email sent successfully');
-
             return NextResponse.json(
                 { message: 'Confirmation email sent successfully' },
                 { status: 200 }
             );
         } catch (emailError) {
-            console.error('Error sending email:', emailError);
+            console.error('Error sending confirmation email:', emailError);
             return NextResponse.json(
-                { error: `Email sending failed: ${emailError.message}` },
+                { error: `Confirmation email sending failed: ${emailError.message}` },
                 { status: 500 }
             );
         }
