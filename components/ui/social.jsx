@@ -19,7 +19,7 @@ const socials = [
   },
   {
     icon: <FaInstagram />,
-    path: "https://www.instagram.com/william_secspeare/?next=%2F",
+    path: "https://www.instagram.com/niket_kumar_chawla/?next=%2F",
     gradient:
       "linear-gradient(135deg, #f58529, #e1306c, #bc2a8d)",
     color: "#fff", 
