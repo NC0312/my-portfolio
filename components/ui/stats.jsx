@@ -27,7 +27,7 @@ const calculateTenure = (startDate) => {
 };
 
 const Stats = () => {
-  const [showPlus, setShowPlus] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const [tenureData, setTenureData] = useState({ tenureValue: "", tenureLabel: "" });
 
   useEffect(() => {
@@ -38,20 +38,28 @@ const Stats = () => {
     {
       num: tenureData.tenureValue, 
       text: tenureData.tenureLabel,
+      showPlus: false // No plus for tenure
     },
     {
       num: 25,
       text: "Projects completed",
+      showPlus: true
     },
     {
-      num: 11,
+      num: 10,
       text: "Technologies mastered",
+      showPlus: true
     },
     {
-      num: 600, 
+      num: 500, 
       text: "Code commits",
+      showPlus: true
     },
   ];
+
+  const handleAnimationEnd = () => {
+    setAnimationComplete(true);
+  };
 
   return (
     <section className="pt-4 pb-12 xl:pt-0 xl:pb-0 mb-10">
@@ -62,26 +70,19 @@ const Stats = () => {
               className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
               key={index}
             >
-              {/* For "Code commits", we handle animation differently */}
-              {item.num === 600 ? (
-                <div className="text-4xl xl:text-6xl font-extrabold flex items-center">
-                  <CountUp
-                    end={item.num}
-                    duration={5}
-                    delay={2}
-                    onEnd={() => setShowPlus(true)}
+              <div className="text-4xl xl:text-6xl font-extrabold flex items-center">
+                {typeof item.num === "number" ? (
+                  <CountUp 
+                    end={item.num} 
+                    duration={5} 
+                    delay={2} 
+                    onEnd={handleAnimationEnd}
                   />
-                  {showPlus && <span>+</span>}
-                </div>
-              ) : (
-                <div className="text-4xl xl:text-6xl font-extrabold flex items-center">
-                  {typeof item.num === "number" ? (
-                    <CountUp end={item.num} duration={5} delay={2} />
-                  ) : (
-                    <span>{item.num}</span>
-                  )}
-                </div>
-              )}
+                ) : (
+                  <span>{item.num}</span>
+                )}
+                {item.showPlus && animationComplete && <span>+</span>}
+              </div>
               <p
                 className={`${
                   item.text.length < 15 ? "max-w-[100px]" : "max-w-[150px]"
