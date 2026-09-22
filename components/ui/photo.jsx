@@ -24,7 +24,7 @@ const Photo = () => {
           className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] relative overflow-hidden rounded-full p-1 bg-gradient-to-r from-black via-transparent to-black"
         >
           <Image
-            src="/assets/profile-image.webp"
+            src="/assets/profile-image.jpeg"
             priority
             quality={100}
             fill
