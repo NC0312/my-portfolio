@@ -206,7 +206,7 @@ const Resume = () => {
                       const [startDate] = item.duration.split(' - ');
                       const tenure = calculateTenure(startDate);
                       return (
-                        <li key={index} className='relative bg-[#232329] h-[184px] w-[450px] py-2 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                        <li key={index} className='relative bg-[#232329] h-[184px] w-full py-2 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
                           <span className='text-accent'>{item.duration} · {tenure}</span>
                           <h3 className='text-xl min-h-[60px] text-center lg:text-left'>{item.position}</h3>
                           <div className='flex items-center gap-3'>
