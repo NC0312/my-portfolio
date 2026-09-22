@@ -200,15 +200,15 @@ const Resume = () => {
               <div className='flex flex-col gap-[30px] text-center xl:text-left'>
                 <h3 className='text-4xl font-bold'>{experience.title}</h3>
                 <p className='max-w-[600px] text-white/60 mx-auto xl:mx-0'>{experience.description}</p>
-                <ScrollArea className="h-[400px]">
+                <ScrollArea className="h-[500px]">
                   <ul className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
                     {experience.items.map((item, index) => {
                       const [startDate] = item.duration.split(' - ');
                       const tenure = calculateTenure(startDate);
                       return (
-                        <li key={index} className='relative bg-[#232329] h-[184px] w-full py-2 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
-                          <span className='text-accent'>{item.duration} · {tenure}</span>
-                          <h3 className='text-xl min-h-[60px] text-center lg:text-left'>{item.position}</h3>
+                        <li key={index} className='relative bg-[#232329] min-h-[220px] w-full py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                          <span className='text-accent text-center lg:text-left'>{item.duration} · {tenure}</span>
+                          <h3 className='text-xl text-center lg:text-left'>{item.position}</h3>
                           <div className='flex items-center gap-3'>
                             <span className='w-[6px] h-[6px] rounded-full bg-accent'></span>
                             <p className='text-white/60'>{item.company}</p>
