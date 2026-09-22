@@ -13,8 +13,7 @@ const Home = () => {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Software Developer</span>
             <h1 className="h1 mb-6">Hello I'm <br /> <span className="text-accent">Niket Chawla</span></h1>
-            <p className="max-w-[500px] mb-9 text-white/80">SDE-1 at Twinline Business Solutions | Full Stack Java Developer | Expert in Spring Boot, Hibernate, SQL | Skilled in Microservices, React, Next, and MongoDB
- full-stack application development</p>
+            <p className="max-w-[500px] mb-9 text-white/80">Full-stack Software Developer with 2 years of experience building scalable backend services and internal tooling in Java, Spring Boot, and the React/Next.js ecosystem. Proven track record of replacing third-party SaaS tools with in-house platforms.</p>
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <Link href="/assets/resume.pdf" download target="_blank">
               <Button variant="outline" size="lg" className="uppercase flex items-center gap-2">

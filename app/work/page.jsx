@@ -21,6 +21,16 @@ import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
 const projects=[
   {
     num: "01",
+    category:"Trackr",
+    title:"Trackr",
+    description:"In-house issue-tracking platform rivaling Jira's core functionality, built with custom workflow and ticket-management features — now used by 500+ users across 30+ corporate clients (MFIs and NBFCs), replacing a licensed third-party tool and cutting per-seat costs.",
+    stack:[{name:"React 18"},{name:"Java 21"},{name:"PostgreSQL"}],
+    image:"/assets/company1.png",
+    live:null,
+    github:null,
+  },
+  {
+    num: "02",
     category:"Social It Up Clone",
     title:"Social It Up Clone",
     description:"Cloning the website of a marketing company, Social It Up With some Additional Features like some panels for admins and email system integration.",
@@ -30,7 +40,7 @@ const projects=[
     github:"https://github.com/NC0312/social-it-up",
   },
   {
-    num:"02",
+    num:"03",
     category:"Tripify",
     title:"Tripify",
     description:"AI-powered travel planner built with React.js, Firebase,Google Maps API and Gemini Recommendations",
@@ -40,7 +50,7 @@ const projects=[
     github:"https://github.com/NC0312/tripify-web-app"
   },
   {
-    num:"03",
+    num:"04",
     category:"Tomato",
     title:"Tomato",
     description:"Food Delivery/Restaurant Website made using MERN Stack involving features like admin panel and payment gateway.",
@@ -50,7 +60,7 @@ const projects=[
     github:'https://github.com/NC0312/tomato-food-app'
   },
   {
-    num:"04",
+    num:"05",
     category:"Textify",
     description:"Textify is a chat web application made using MERN Stack and Sockets making chat realtime.",
     stack:[{name:"MERN Stack"},{name:"Sockets"}],
@@ -90,27 +100,35 @@ const Work = () => {
             </ul>
             <div className="border border-white/20"></div>
             <div className="flex items-center gap-4">
-              <Link href={project.live} target="_blank">
-                <TooltipProvider delayDuration={100}>
-                  <Tooltip>
-                    <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                      <BsArrowUpRight className="text-white text-3xl group-hover:text-accent"/>
-                    </TooltipTrigger>
-                    <TooltipContent><p>Live project</p></TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </Link>
+              {project.live && (
+                <Link href={project.live} target="_blank">
+                  <TooltipProvider delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent"/>
+                      </TooltipTrigger>
+                      <TooltipContent><p>Live project</p></TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Link>
+              )}
 
-              <Link href={project.github} target="_blank">
-                <TooltipProvider delayDuration={100}>
-                  <Tooltip>
-                    <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
-                      <BsGithub className="text-white text-3xl group-hover:text-accent"/>
-                    </TooltipTrigger>
-                    <TooltipContent><p>Github repo</p></TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </Link>
+              {project.github && (
+                <Link href={project.github} target="_blank">
+                  <TooltipProvider delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                        <BsGithub className="text-white text-3xl group-hover:text-accent"/>
+                      </TooltipTrigger>
+                      <TooltipContent><p>Github repo</p></TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Link>
+              )}
+
+              {!project.live && !project.github && (
+                <span className="text-white/40 text-sm italic">Internal company platform — not publicly accessible</span>
+              )}
             </div>
 
             </div>
@@ -128,7 +146,7 @@ const Work = () => {
                   <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
 
                   <div className="relative w-full h-full">
-                    <Image src={project.image} fill className="object-cover rounded-lg"></Image>
+                    <Image src={project.image} alt={project.title || project.category} fill className="object-cover rounded-lg"></Image>
                   </div>
                   </div>
                 </SwiperSlide>

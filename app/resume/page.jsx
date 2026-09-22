@@ -1,9 +1,9 @@
 "use client";
 
-import { FaReact, FaNodeJs, FaDatabase, FaJava, FaJs, FaCss3, FaHtml5, FaDocker, FaGit, FaFigma, FaAws, FaStripe } from 'react-icons/fa';
-import {SiVercel , SiGooglecloud,SiTailwindcss, SiNextdotjs, SiHibernate, SiSpringboot, SiMongodb, SiMysql ,SiShadcnui,SiFramer,SiTypescript,SiExpress    } from 'react-icons/si';
+import { FaReact, FaDatabase, FaJava, FaJs, FaHtml5, FaSitemap } from 'react-icons/fa';
+import { SiNextdotjs, SiHibernate, SiSpringboot, SiMysql, SiOracle, SiPostgresql, SiAnthropic, SiGithubcopilot } from 'react-icons/si';
 import { RiFirebaseFill } from "react-icons/ri";
-import { TbBrandCpp } from "react-icons/tb";
+import { TbBrandReactNative, TbApi } from "react-icons/tb";
 
 const calculateTenure = (startDate) => {
   const start = new Date(startDate);
@@ -29,7 +29,7 @@ const calculateTenure = (startDate) => {
 const about = {
   title: "About me",
   description:
-    "Java Software Developer at Twinline Business Solutions | MERN Stack & Next.js Enthusiast",
+    "Full-stack Software Developer with 2 years of experience building scalable backend services and internal tooling in Java, Spring Boot, and the React/Next.js ecosystem. Proven track record of replacing third-party SaaS tools (Jira, FactoHR) with in-house platforms, and automating manual business processes. Strong in REST API design, system design, and cross-functional delivery.",
 
   info: [
     { fieldName: "Name", fieldValue: "Niket Chawla" },
@@ -51,9 +51,25 @@ const experience = {
   items: [
     {
       company: 'Twinline Business Solutions',
-      position: 'Java Software Developer',
-      duration: 'Aug 2024 - Present',
-      location: 'Gurugram,Haryana',
+      position: 'Software Developer (SDE-2)',
+      duration: 'Aug 2025 - Present',
+      location: 'Gurgaon, India',
+      logo: '/assets/company1.png',
+      linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
+    },
+    {
+      company: 'Twinline Business Solutions',
+      position: 'Software Developer (SDE-1)',
+      duration: 'Dec 2024 - Aug 2025',
+      location: 'Gurgaon, India',
+      logo: '/assets/company1.png',
+      linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
+    },
+    {
+      company: 'Twinline Business Solutions',
+      position: 'Software Development Intern',
+      duration: 'Aug 2024 - Nov 2024',
+      location: 'Gurugram, India',
       logo: '/assets/company1.png',
       linkedin: 'https://www.linkedin.com/company/twinline-business-solutions/'
     },
@@ -97,41 +113,45 @@ const skills = {
   title: "My Skills",
   sections: [
     {
-      title: "Frontend/UI",
+      title: "Languages",
       skillList: [
-        { icon: <FaReact />, name: "React JS" },
+        { icon: <FaJava />, name: "Java 11 / 17 / 21" },
         { icon: <FaJs />, name: "JavaScript" },
-        { icon: <SiNextdotjs />, name: "Next JS" },
-        {icon:<SiTypescript />,name:"TypeScript"},
-        {icon: <SiTailwindcss />,name:"Tailwind"},
-        {icon:<SiShadcnui />,name:"Shadcn"},
-        {icon:<SiFramer />,name:"Framer Motion"},
-        { icon: <FaFigma />, name: "Figma" },
-      ],
-    },
-    
-    {
-      title: "Database/Cloud",
-      skillList: [
-        { icon: <SiMysql />, name: "MySQL" },
-        { icon: <SiMongodb />, name: "MongoDB" },
-        { icon: <FaAws />, name: "AWS" },
-        {icon:<SiGooglecloud/>,name:"Google Cloud"},
-        { icon :<RiFirebaseFill />,name:"Firebase"},
-        {icon:<SiVercel />,name:"Vercel"},
-        {icon:<FaGit/>,name:"Git"},
-        {icon:<FaDocker/>,name:"Docker"}
       ],
     },
     {
       title: "Backend",
       skillList: [
-        { icon: <FaJava />, name: "Java" },
-        { icon: <SiSpringboot/>, name: "Spring Boot" },
+        { icon: <SiSpringboot />, name: "Spring Boot" },
         { icon: <SiHibernate />, name: "Hibernate" },
-        { icon: <FaNodeJs />, name: "Node JS" },
-        {icon:<SiExpress />,name:"Express JS"},
-        {icon:<TbBrandCpp />,name:"C++"}
+        { icon: <FaDatabase />, name: "JPA / DAO" },
+        { icon: <TbApi />, name: "REST API Design" },
+        { icon: <FaSitemap />, name: "System Design" },
+      ],
+    },
+    {
+      title: "Frontend",
+      skillList: [
+        { icon: <FaReact />, name: "React 18" },
+        { icon: <SiNextdotjs />, name: "Next.js (SSR)" },
+        { icon: <TbBrandReactNative />, name: "React Native" },
+        { icon: <FaHtml5 />, name: "HTML/CSS" },
+      ],
+    },
+    {
+      title: "Databases",
+      skillList: [
+        { icon: <SiPostgresql />, name: "PostgreSQL" },
+        { icon: <SiOracle />, name: "Oracle" },
+        { icon: <SiMysql />, name: "MySQL" },
+        { icon: <RiFirebaseFill />, name: "Firebase" },
+      ],
+    },
+    {
+      title: "AI-Assisted Development",
+      skillList: [
+        { icon: <SiAnthropic />, name: "Claude" },
+        { icon: <SiGithubcopilot />, name: "GitHub Copilot" },
       ],
     },
   ],
