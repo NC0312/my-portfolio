@@ -11,9 +11,9 @@ function Block({ id, title, children }) {
     <section
       aria-labelledby={id}
       data-rule
-      className="section-rule grid gap-6 py-12 md:grid-cols-[200px_1fr] md:gap-10"
+      className="section-rule grid gap-6 py-12 md:grid-cols-[240px_1fr] md:gap-10"
     >
-      <h2 id={id} data-reveal className="t-label text-muted md:pt-2">
+      <h2 id={id} data-reveal className="t-h2">
         {title}
       </h2>
       <div data-reveal>{children}</div>
@@ -46,22 +46,22 @@ export default function ResumePage() {
             href={experience.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="link inline-flex min-h-8 items-center gap-1 t-h3"
+            className="link t-small inline-flex min-h-11 items-center gap-1"
           >
-            {experience.company} <ArrowUpRight />
+            {experience.company} <ArrowUpRight width={14} height={14} />
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
-          <ul className="divide-y mt-6">
+          <ul className="divide-y">
             {experience.roles.map((r) => (
-              <li key={r.title} className="py-6">
+              <li key={r.title} className="py-7 first:pt-3">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                   <div>
-                    <p className="t-body font-medium">{r.title}</p>
-                    <p className="t-small text-muted">{r.location}</p>
+                    <h3 className="t-h3">{r.title}</h3>
+                    <p className="t-small mt-1 text-muted">{r.location}</p>
                   </div>
                   <p className="t-small font-mono text-muted tabular-nums">{r.dates}</p>
                 </div>
-                <ul className="t-body measure mt-4 flex list-disc flex-col gap-3 pl-5 text-muted marker:text-muted">
+                <ul className="t-body measure mt-5 flex list-disc flex-col gap-3 pl-5 marker:text-muted">
                   {r.highlights.map((h) => (
                     <li key={h}>{h}</li>
                   ))}
@@ -79,9 +79,9 @@ export default function ResumePage() {
                 className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
               >
                 <div>
-                  <p className="t-body font-medium">{e.school}</p>
-                  <p className="t-small text-muted">{e.detail}</p>
-                  <p className="t-small text-muted">{e.location}</p>
+                  <h3 className="t-h3">{e.school}</h3>
+                  <p className="t-body mt-1">{e.detail}</p>
+                  <p className="t-small mt-1 text-muted">{e.location}</p>
                 </div>
                 <p className="t-small font-mono text-muted tabular-nums">{e.dates}</p>
               </li>
@@ -103,7 +103,7 @@ export default function ResumePage() {
           </dl>
         </Block>
 
-        <div className="border-t" />
+        <div className="border-t border-line-strong" />
       </div>
     </div>
   );

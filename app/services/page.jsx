@@ -23,7 +23,7 @@ export default function ServicesPage() {
             className="grid gap-3 py-8 md:grid-cols-[1fr_2fr] md:gap-10"
           >
             <h2 className="t-h3">{s.title}</h2>
-            <p className="t-body measure text-muted">{s.description}</p>
+            <p className="t-body measure">{s.description}</p>
           </li>
         ))}
       </ul>

@@ -24,19 +24,19 @@ export default function WorkPage() {
             className="grid gap-6 py-10 md:grid-cols-[1fr_2fr] md:gap-10"
           >
             <div className="flex flex-col gap-5">
-              <div className="relative size-16 overflow-hidden rounded-lg border bg-[#faf9f6]">
+              <div className="relative size-11 overflow-hidden rounded-md border bg-[#faf9f6]">
                 {p.image ? (
                   <Image
                     src={p.image}
                     alt={`${p.title} logo`}
                     fill
-                    sizes="64px"
+                    sizes="44px"
                     className="object-contain p-1"
                   />
                 ) : (
                   <span
                     aria-hidden="true"
-                    className="flex h-full items-center justify-center bg-surface font-mono text-lg text-muted"
+                    className="flex h-full items-center justify-center bg-surface font-mono text-sm text-muted"
                   >
                     {p.mark ?? p.title.slice(0, 2)}
                   </span>

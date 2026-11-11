@@ -57,7 +57,7 @@ export default function Home() {
         <div
           data-hero-rule
           aria-hidden="true"
-          className="mt-20 h-px bg-line md:mt-28"
+          className="mt-16 h-px bg-line-strong md:mt-20"
         />
       </section>
 

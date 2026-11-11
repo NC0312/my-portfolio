@@ -36,6 +36,8 @@
   --success: #287c42;
   /* Form field borders: at least 3:1 against the page (WCAG 1.4.11) */
   --control: var(--paper-400);
+  /* Section dividers: one step stronger than row hairlines */
+  --border-strong: var(--paper-300);
 
   color-scheme: light;
 }
@@ -51,6 +53,7 @@
     --danger: #fa6773;
     --success: #5bbd74;
     --control: var(--paper-600);
+    --border-strong: var(--paper-700);
     color-scheme: dark;
   }
 }
@@ -65,6 +68,7 @@
   --danger: #fa6773;
   --success: #5bbd74;
   --control: var(--paper-600);
+  --border-strong: var(--paper-700);
   color-scheme: dark;
 }
 
@@ -72,6 +76,7 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
   --color-muted: var(--muted);
   --color-fg: var(--fg);
   --color-accent: var(--accent);
@@ -357,6 +362,7 @@
     top: 0;
     left: 0;
     right: 0;
+    background: var(--border-strong);
   }
   .wrap.section-rule::before {
     left: var(--gutter);
