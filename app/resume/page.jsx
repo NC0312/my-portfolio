@@ -10,13 +10,13 @@ function Block({ id, title, children }) {
   return (
     <section
       aria-labelledby={id}
-      data-reveal
-      className="grid gap-6 border-t py-12 md:grid-cols-[200px_1fr] md:gap-10"
+      data-rule
+      className="section-rule grid gap-6 py-12 md:grid-cols-[200px_1fr] md:gap-10"
     >
-      <h2 id={id} className="t-label text-muted md:pt-2">
+      <h2 id={id} data-reveal className="t-label text-muted md:pt-2">
         {title}
       </h2>
-      <div>{children}</div>
+      <div data-reveal>{children}</div>
     </section>
   );
 }
@@ -26,12 +26,12 @@ export default function ResumePage() {
     <div className="wrap section pt-12 md:pt-20">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <h1 className="t-h1">Resume</h1>
-          <p className="t-lead mt-5 max-w-[52ch] text-muted">
+          <h1 data-intro="title" className="t-h1">Resume</h1>
+          <p data-intro className="t-lead mt-5 max-w-[52ch] text-muted">
             {profile.role}, two years in.
           </p>
         </div>
-        <a href={profile.resume} download className="btn btn-primary">
+        <a data-intro href={profile.resume} download className="btn btn-primary">
           <Download /> Download PDF
         </a>
       </div>
@@ -53,15 +53,19 @@ export default function ResumePage() {
           </a>
           <ul className="divide-y mt-6">
             {experience.roles.map((r) => (
-              <li
-                key={r.title}
-                className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-              >
-                <div>
-                  <p className="t-body font-medium">{r.title}</p>
-                  <p className="t-small text-muted">{r.location}</p>
+              <li key={r.title} className="py-6">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <div>
+                    <p className="t-body font-medium">{r.title}</p>
+                    <p className="t-small text-muted">{r.location}</p>
+                  </div>
+                  <p className="t-small font-mono text-muted tabular-nums">{r.dates}</p>
                 </div>
-                <p className="t-small font-mono text-muted tabular-nums">{r.dates}</p>
+                <ul className="t-body measure mt-4 flex list-disc flex-col gap-3 pl-5 text-muted marker:text-muted">
+                  {r.highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
@@ -76,9 +80,7 @@ export default function ResumePage() {
               >
                 <div>
                   <p className="t-body font-medium">{e.school}</p>
-                  <p className="t-small text-muted">
-                    {e.detail}, {e.result}
-                  </p>
+                  <p className="t-small text-muted">{e.detail}</p>
                   <p className="t-small text-muted">{e.location}</p>
                 </div>
                 <p className="t-small font-mono text-muted tabular-nums">{e.dates}</p>

@@ -10,17 +10,16 @@ export const metadata = {
 export default function WorkPage() {
   return (
     <div className="wrap section pt-12 md:pt-20">
-      <h1 className="t-h1">Work</h1>
-      <p className="t-lead mt-5 max-w-[52ch] text-muted">
+      <h1 data-intro="title" className="t-h1">Work</h1>
+      <p data-intro className="t-lead mt-5 max-w-[52ch] text-muted">
         One production platform and four projects built to learn and to ship.
       </p>
 
       <ul className="rows mt-14">
-        {projects.map((p, i) => (
+        {projects.map((p) => (
           <li
             key={p.slug}
             data-reveal
-            style={{ "--i": i % 3 }}
             className="grid gap-6 py-10 md:grid-cols-[1fr_2fr] md:gap-10"
           >
             <div className="flex flex-col gap-5">

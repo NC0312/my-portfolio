@@ -10,17 +10,16 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <div className="wrap section pt-12 md:pt-20">
-      <h1 className="t-h1">Services</h1>
-      <p className="t-lead mt-5 max-w-[52ch] text-muted">
+      <h1 data-intro="title" className="t-h1">Services</h1>
+      <p data-intro className="t-lead mt-5 max-w-[52ch] text-muted">
         What I can build for you.
       </p>
 
       <ul className="rows mt-14">
-        {services.map((s, i) => (
+        {services.map((s) => (
           <li
             key={s.title}
             data-reveal
-            style={{ "--i": i }}
             className="grid gap-3 py-8 md:grid-cols-[1fr_2fr] md:gap-10"
           >
             <h2 className="t-h3">{s.title}</h2>

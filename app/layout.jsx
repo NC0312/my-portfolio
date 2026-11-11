@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
-import RevealObserver from "@/components/RevealObserver";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -29,8 +29,11 @@ export const metadata = {
   },
 };
 
-// Applies a saved theme before first paint so the page never flashes.
-const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t}}catch(e){}`;
+// Runs before first paint:
+// 1. applies a saved theme so the page never flashes the wrong colours;
+// 2. when motion is allowed, hides animated elements until GSAP takes over,
+//    with a timeout so content still appears if scripts fail to load.
+const headScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){d.dataset.theme=t}}catch(e){}if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("motion-pending");setTimeout(function(){d.classList.remove("motion-pending")},2500)}})();`;
 
 export default function RootLayout({ children }) {
   return (
@@ -40,7 +43,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: headScript }} />
       </head>
       <body>
         <a href="#main" className="skip-link">
@@ -49,7 +52,7 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         <main id="main">{children}</main>
         <Footer />
-        <RevealObserver />
+        <SmoothScroll />
       </body>
     </html>
   );

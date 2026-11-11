@@ -10,8 +10,8 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="wrap section pt-12 md:pt-20">
-      <h1 className="t-h1">Contact</h1>
-      <p className="t-lead mt-5 max-w-[52ch] text-muted">
+      <h1 data-intro="title" className="t-h1">Contact</h1>
+      <p data-intro className="t-lead mt-5 max-w-[52ch] text-muted">
         Tell me about your project. I'll reply by email.
       </p>
 
@@ -59,7 +59,7 @@ export default function ContactPage() {
           </div>
         </dl>
 
-        <div data-reveal style={{ "--i": 1 }}>
+        <div data-reveal>
           <ContactForm />
         </div>
       </div>
