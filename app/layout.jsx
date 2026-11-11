@@ -1,35 +1,56 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import { icons } from "lucide-react";
-import PageTransition from "@/components/ui/PageTransition";
-import StairTransition from "@/components/ui/StairTransition";
-import { DevToolsBlocker } from "@/utils/devToolsBlocker";
+import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
+import RevealObserver from "@/components/RevealObserver";
 
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] , weight:["100","200","300","400","500","600","700","800"],
-  variable:'--font-jetBrainsMono'
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Niket Chawla",
-  description: "This is my portfolio website Niket Chawla made using NextJS.",
+  metadataBase: new URL("https://niketchawla.vercel.app"),
+  title: {
+    default: "Niket Chawla, software developer",
+    template: "%s | Niket Chawla",
+  },
+  description:
+    "Niket Chawla is a full-stack developer building backend services and internal tools in Java, Spring Boot and Next.js.",
   icons: {
-    icon: '/assets/logo.png',
+    icon: "/assets/logo.png",
   },
 };
 
+// Applies a saved theme before first paint so the page never flashes.
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t}}catch(e){}`;
+
 export default function RootLayout({ children }) {
-  const isProduction = process.env.NEXT_PUBLIC_ENV === 'production';
   return (
-    <html lang="en">
-      <body className={jetbrainsMono.variable}>
-        <Header/> 
-        <StairTransition/>
-        <PageTransition>
-        {children}
-        </PageTransition>
-        {isProduction && <DevToolsBlocker />}
-        </body>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <Footer />
+        <RevealObserver />
+      </body>
     </html>
   );
 }

@@ -1,73 +1,48 @@
-"use client";
+import Link from "next/link";
+import { ArrowUpRight } from "@/components/Icon";
+import { profile, services } from "@/lib/data";
 
-import {BsArrowDownRight} from 'react-icons/bs';
-import Link from 'next/link';
-import {motion} from 'framer-motion';
+export const metadata = {
+  title: "Services",
+  description: "Web development services from Niket Chawla: MERN stack, full-stack Java, Next.js and UI development.",
+};
 
-const services=[
-    {
-        num:'01',
-        title:'MERN Stack Web Development',
-        description:'Expert in building full-stack web applications using MongoDB, Express.js, React, and Node.js. Delivering scalable, efficient, and modern web solutions tailored to your specific needs.'
-    },
-    {
-        num:'02',
-        title:'Full Stack Java Development',
-        description:'Experienced in full stack development using Java, Spring Boot, and Hibernate. Proficient in building scalable backend RESTful APIs, and seamless front-end integration.',
-    },
-
-    {
-        num:'03',
-        title:'NextJS Web Development',
-        description:'Specialized in creating high-performance, SEO-friendly web applications using Next.js. Leveraging server-side rendering and static site generation for optimal user experience and faster load times.'
-    },
-    {
-        num:'04',
-        title:'UI Development',
-        description:'Crafting visually stunning and responsive websites using CSS, Tailwind CSS, and other modern design frameworks. Skilled in creating intuitive user interfaces that blend aesthetics with functionality for an optimal user experience.'
-    },
-    
-    // {
-    //     num:'05',
-    //     title:'React Native Development',
-    //     description:'Skilled in developing cross-platform mobile applications with React Native, specializing in Android app creation. Leveraging React principles to build efficient, native-like mobile experiences with a single codebase.',
-    // }
-    
-
-]
-
-const Services = () => {
+export default function ServicesPage() {
   return (
-    <section className='min-h-[80vh] flex flex-col justify-center py-12 xl:py-0'>
-        <div className="container mx-auto">
-            <motion.div
-               initial={{opacity:0}}
-               animate={{
-                opacity:1,
-                transition:{delay:1.4,duration:0.4,ease:"easeIn"},
-               }}
+    <div className="wrap section pt-12 md:pt-20">
+      <h1 className="t-h1">Services</h1>
+      <p className="t-lead mt-5 max-w-[52ch] text-muted">
+        What I can build for you.
+      </p>
 
-               className='grid grid-cols-1 md:grid-cols-2 gap-[60px]'
-            >
-                {services.map((service,index)=>{
-                    return <div key={index} className='flex-1 flex flex-col justify-center gap-6 group'>
-                        <div className='w-full flex justify-between items-center'>
-                            <div className='text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover'>{service.num}</div>
-                            <a  href='https://www.fiverr.com/s/BRmxd4d' 
-  target='_blank' 
-  rel='noopener noreferrer'  className='w-[70px] h-[70px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45'>
-                            <BsArrowDownRight className='text-primary text-3xl'/>
-                            </a>
-                        </div>
-                        <h2 className='text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500'>{service.title}</h2>
-                        <p className='text-white/60'>{service.description}</p>
-                        <div className='border-b border-white/20 w-full'></div>
-                    </div>
-                })}
-            </motion.div>
-        </div>
-    </section>
-  )
+      <ul className="rows mt-14">
+        {services.map((s, i) => (
+          <li
+            key={s.title}
+            data-reveal
+            style={{ "--i": i }}
+            className="grid gap-3 py-8 md:grid-cols-[1fr_2fr] md:gap-10"
+          >
+            <h2 className="t-h3">{s.title}</h2>
+            <p className="t-body measure text-muted">{s.description}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3" data-reveal>
+        <Link href="/contact" className="btn btn-primary">
+          Start a project
+        </Link>
+        <a
+          href={profile.fiverr}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link inline-flex min-h-11 items-center gap-1"
+        >
+          Or hire me on Fiverr <ArrowUpRight width={14} height={14} />
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  );
 }
-
-export default Services

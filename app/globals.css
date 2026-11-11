@@ -1,95 +1,360 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-  
+@import "tailwindcss";
 
-@layer base{
-  body{
-    @apply font-primary bg-primary text-white leading-loose;
-  }
-  
-  .h1{
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
-  }
-  .h2{
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
-  }
-  .h3{
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
-  }
-  .text-outline{
-    -webkit-text-stroke: 1px #ffffff;
-  }
-  
-  .text-outline-hover{
-    -webkit-text-stroke:1px #00ff99;
-    /* cursor: pointer; */
-  }
+/* ------------------------------------------------------------------
+   Design tokens: "Paper and Ember"
+   Light is the default. Dark follows the OS unless the visitor picks a
+   theme with the toggle, which sets data-theme on <html>.
+------------------------------------------------------------------- */
+:root {
+  /* Paper (neutral) */
+  --paper-50: #faf9f6;
+  --paper-100: #f2f0eb;
+  --paper-200: #e4e1da;
+  --paper-300: #b9b5ae;
+  --paper-400: #8f8b84;
+  --paper-500: #7d7973;
+  --paper-600: #6b6862;
+  --paper-700: #474641;
+  --paper-800: #262623;
+  --paper-900: #1a1917;
+  --paper-950: #0e0e0d;
 
-  h1::selection{
-    background-color: #00ff99;
-    color: white;
-  }
-  span::selection{
-    background-color: #00ff99;
-    color: white;
-  }
-  h2::selection{
-    background-color: #00ff99;
-    color: white;
-  }
-  h3::selection{
-    background-color: #00ff99;
-    color: white;
-  }
-  img::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
-  input::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
-  
-  ul::selection{
-    background-color: #00ff99;
-    color: #ffffff;
-  }
-  Textarea::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
+  /* Ember (accent) */
+  --ember-400: #ff7a4d;
+  --ember-600: #c8431a;
 
-  li::selection{
-    background-color: #00ff99;
-    color: #ffffff;
-  }
-  button::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
-  Link::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
-  div::selection{
-    background-color: #00ff99;
-    color: #fff;
-  }
-  p::selection{
-    background-color: #00ff99;
-    color: white;
-  }
+  /* Roles, light */
+  --bg: var(--paper-50);
+  --surface: var(--paper-100);
+  --border: var(--paper-200);
+  --muted: var(--paper-600);
+  --fg: var(--paper-900);
+  --accent: var(--ember-600);
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Firefox */
-  * {
-    scrollbar-width: none;
-  }
- 
-  
+  /* Status, used for form feedback only */
+  --danger: #b3203a;
+  --success: #287c42;
+
+  color-scheme: light;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--paper-950);
+    --surface: var(--paper-900);
+    --border: var(--paper-800);
+    --muted: var(--paper-400);
+    --fg: var(--paper-100);
+    --accent: var(--ember-400);
+    --danger: #fa6773;
+    --success: #5bbd74;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--paper-950);
+  --surface: var(--paper-900);
+  --border: var(--paper-800);
+  --muted: var(--paper-400);
+  --fg: var(--paper-100);
+  --accent: var(--ember-400);
+  --danger: #fa6773;
+  --success: #5bbd74;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--border);
+  --color-muted: var(--muted);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Type scale (matches the approved type system)
+------------------------------------------------------------------- */
+@layer components {
+  .t-display {
+    font-size: clamp(2.75rem, 7vw, 4.5rem);
+    line-height: 1.04;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .t-h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .t-h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .t-lead {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+  }
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+  .t-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Layout */
+  .wrap {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: max(24px, env(safe-area-inset-left, 0px));
+  }
+  .section {
+    padding-block: clamp(48px, 7vw, 88px);
+  }
+  .measure {
+    max-width: 65ch;
+  }
+
+  /* Links */
+  .link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 200ms;
+  }
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  /* Quiet link: foreground colour, underline on hover */
+  .link-quiet {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 200ms, color 200ms;
+  }
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 200ms, border-color 200ms, transform 120ms;
+  }
+  .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--fg) 82%, var(--bg));
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  .btn-ghost:hover:not(:disabled) {
+    border-color: var(--fg);
+  }
+
+  /* Form controls */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .field label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .field .hint {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font: inherit;
+    transition: border-color 200ms;
+  }
+  .input::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+  }
+  .input:hover {
+    border-color: var(--paper-400);
+  }
+  .input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+  .input[aria-invalid="true"] {
+    border-color: var(--danger);
+  }
+  textarea.input {
+    min-height: 160px;
+    resize: vertical;
+  }
+  select.input {
+    appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%238f8b84' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  .error-text {
+    color: var(--danger);
+    font-size: 0.875rem;
+  }
+
+  /* Hairline list rows */
+  .rows > * {
+    border-top: 1px solid var(--border);
+  }
+  .rows > *:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: 16px;
+    top: -64px;
+    z-index: 50;
+    background: var(--fg);
+    color: var(--bg);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: top 150ms;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Scroll-entry motion. Elements marked data-reveal are hidden by
+   script only when they start below the fold, so content is always
+   visible without JavaScript and for reduced-motion visitors.
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  [data-reveal].is-hidden {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
