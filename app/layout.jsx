@@ -3,6 +3,8 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/motion/SmoothScroll";
+import JsonLd from "@/components/JsonLd";
+import { site, siteGraph } from "@/lib/site";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -16,17 +18,26 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+// Pages build their own title, description, canonical and share cards with
+// pageMetadata() in lib/site.js. These are the fallbacks (for example the 404).
 export const metadata = {
-  metadataBase: new URL("https://niketchawla.vercel.app"),
+  metadataBase: new URL(site.url),
   title: {
-    default: "Niket Chawla, software developer",
+    default: "Niket Chawla, Full-Stack Developer | Java and Next.js",
     template: "%s | Niket Chawla",
   },
   description:
-    "Niket Chawla is a full-stack developer building backend services and internal tools in Java, Spring Boot and Next.js.",
-  icons: {
-    icon: "/assets/logo.png",
-  },
+    "Full-stack developer building backend services and internal tools in Java, Spring Boot and Next.js.",
+  authors: [{ name: site.name, url: site.url }],
+  openGraph: { type: "website", siteName: site.name, locale: site.locale },
+  twitter: { card: "summary_large_image" },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e0e0d" },
+  ],
 };
 
 // Runs before first paint:
@@ -55,6 +66,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <SmoothScroll />
+        <JsonLd data={siteGraph} />
       </body>
     </html>
   );

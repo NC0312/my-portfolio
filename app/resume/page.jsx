@@ -1,10 +1,14 @@
 import { ArrowUpRight, Download } from "@/components/Icon";
+import JsonLd from "@/components/JsonLd";
 import { profile, experience, education, skills } from "@/lib/data";
+import { pageMetadata, resumeSchema } from "@/lib/site";
 
-export const metadata = {
-  title: "Resume",
-  description: "Experience, education and skills of Niket Chawla, a full-stack developer working in Java, Spring Boot and Next.js.",
-};
+export const metadata = pageMetadata({
+  title: "Resume: full-stack developer, 2 years",
+  description:
+    "Resume of Niket Chawla, a full-stack developer at Twinline Business Solutions with 2 years of Java, Spring Boot, React and Next.js experience.",
+  path: "/resume",
+});
 
 function Block({ id, title, children }) {
   return (
@@ -24,6 +28,7 @@ function Block({ id, title, children }) {
 export default function ResumePage() {
   return (
     <div className="wrap section pt-12 md:pt-20">
+      <JsonLd data={resumeSchema} />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <h1 data-intro="title" className="t-h1">Resume</h1>

@@ -3,6 +3,15 @@ import { ArrowRight, ArrowUpRight, Download } from "@/components/Icon";
 import CopyEmail from "@/components/CopyEmail";
 import ProjectLinks from "@/components/ProjectLinks";
 import { profile, projects, experience } from "@/lib/data";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "Niket Chawla, Full-Stack Developer | Java and Next.js",
+  description:
+    "Full-stack developer building backend services and internal tools in Java, Spring Boot and Next.js. Built an in-house Jira replacement used by 500+ people.",
+  path: "/",
+  absolute: true,
+});
 
 export default function Home() {
   const featured = projects.filter((p) => p.featured);

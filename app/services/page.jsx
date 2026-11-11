@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@/components/Icon";
 import { profile, services } from "@/lib/data";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Services",
-  description: "Web development services from Niket Chawla: MERN stack, full-stack Java, Next.js and UI development.",
-};
+export const metadata = pageMetadata({
+  title: "Java and Next.js development services",
+  description:
+    "Hire Niket Chawla for full-stack Java development, Next.js sites, MERN stack apps and UI development. Send a short brief and get a reply by email.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (

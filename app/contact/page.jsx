@@ -2,11 +2,14 @@ import ContactForm from "@/components/ContactForm";
 import CopyEmail from "@/components/CopyEmail";
 import { ArrowUpRight } from "@/components/Icon";
 import { profile } from "@/lib/data";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
-  description: "Get in touch with Niket Chawla about a project, a role, or a question.",
-};
+  description:
+    "Contact Niket Chawla about a web development project, a role or a question. Use the form or email contactniketchawla@gmail.com and get a reply by email.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

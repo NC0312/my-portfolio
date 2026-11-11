@@ -1,11 +1,14 @@
 import Image from "next/image";
 import ProjectLinks from "@/components/ProjectLinks";
 import { projects } from "@/lib/data";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Work",
-  description: "Projects by Niket Chawla: an internal issue tracker and web apps built with React, Next.js and the MERN stack.",
-};
+export const metadata = pageMetadata({
+  title: "Work: Jira replacement, HRMS and web apps",
+  description:
+    "Projects by Niket Chawla: an in-house Jira replacement used by 500+ people, an HRMS for 80+ employees, and web apps in Next.js, React and the MERN stack.",
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (
