@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import CopyEmail from "./CopyEmail";
 import { profile, services } from "@/lib/data";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -28,11 +29,23 @@ async function post(url, body) {
   if (!res.ok) throw new Error(`Request failed with ${res.status}`);
 }
 
+// Joins ids for aria-describedby, skipping empty ones.
+const describedBy = (...ids) => ids.filter(Boolean).join(" ") || undefined;
+
 export default function ContactForm() {
   const formRef = useRef(null);
+  const resultRef = useRef(null);
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | offline | error
+  const [sentTo, setSentTo] = useState(null);
+
+  // Move focus to the outcome so keyboard and screen reader users hear it.
+  useEffect(() => {
+    if (status === "sent" || status === "offline" || status === "error") {
+      resultRef.current?.focus();
+    }
+  }, [status]);
 
   const update = (e) => {
     const { name, value } = e.target;
@@ -74,20 +87,23 @@ export default function ContactForm() {
       // sender is best effort and must not turn a delivered message into an error.
       await post("/api/send-notification", payload);
       post("/api/send-confirmation", payload).catch(() => {});
+      setSentTo({ name: firstname, email: payload.email });
       setStatus("sent");
       setValues(EMPTY);
       setErrors({});
     } catch {
-      setStatus("error");
+      setStatus(navigator.onLine === false ? "offline" : "error");
     }
   };
 
   if (status === "sent") {
     return (
       <div className="rounded-lg border bg-surface p-8" role="status">
-        <h2 className="t-h3">Message sent</h2>
+        <h2 ref={resultRef} tabIndex={-1} className="t-h3 outline-none">
+          Message sent
+        </h2>
         <p className="t-body mt-3 text-muted">
-          Thanks. I'll reply by email, and a confirmation copy is on its way to you.
+          Thanks, {sentTo?.name}. I'll reply to {sentTo?.email}.
         </p>
         <button
           type="button"
@@ -103,7 +119,13 @@ export default function ContactForm() {
   const sending = status === "sending";
 
   return (
-    <form ref={formRef} onSubmit={submit} noValidate className="flex flex-col gap-6">
+    <form
+      ref={formRef}
+      onSubmit={submit}
+      noValidate
+      aria-busy={sending}
+      className="flex flex-col gap-6"
+    >
       <div className="field">
         <label htmlFor="name">Name</label>
         <input
@@ -116,7 +138,7 @@ export default function ContactForm() {
           onChange={update}
           onBlur={check}
           aria-invalid={Boolean(errors.name)}
-          aria-describedby={errors.name ? "name-error" : undefined}
+          aria-describedby={describedBy(errors.name && "name-error")}
           required
         />
         {errors.name && (
@@ -138,7 +160,7 @@ export default function ContactForm() {
           onChange={update}
           onBlur={check}
           aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
+          aria-describedby={describedBy(errors.email && "email-error")}
           required
         />
         {errors.email && (
@@ -164,7 +186,7 @@ export default function ContactForm() {
             onChange={update}
             onBlur={check}
             aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
+            aria-describedby={describedBy(errors.phone && "phone-error")}
           />
           {errors.phone && (
             <p id="phone-error" className="error-text">
@@ -197,6 +219,9 @@ export default function ContactForm() {
 
       <div className="field">
         <label htmlFor="message">Message</label>
+        <p id="message-hint" className="t-small text-muted -mt-1">
+          What you need, when you need it, and a budget if you have one.
+        </p>
         <textarea
           id="message"
           name="message"
@@ -205,7 +230,7 @@ export default function ContactForm() {
           onChange={update}
           onBlur={check}
           aria-invalid={Boolean(errors.message)}
-          aria-describedby={errors.message ? "message-error" : undefined}
+          aria-describedby={describedBy("message-hint", errors.message && "message-error")}
           required
         />
         {errors.message && (
@@ -215,19 +240,33 @@ export default function ContactForm() {
         )}
       </div>
 
-      {status === "error" && (
-        <p role="alert" className="error-text">
-          Your message was not sent. Check your connection and try again, or email{" "}
-          <a className="link" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
-          .
-        </p>
+      {(status === "offline" || status === "error") && (
+        <div
+          ref={resultRef}
+          tabIndex={-1}
+          role="alert"
+          className="rounded-lg border border-danger p-5 outline-none"
+        >
+          <p className="t-body font-medium text-danger">Your message wasn't sent.</p>
+          <p className="t-small mt-2 text-muted">
+            {status === "offline"
+              ? "You appear to be offline. Your text is still here, so reconnect and press Send message again."
+              : "Something went wrong on the server. Your text is still here, so try again in a minute, or email me directly:"}
+          </p>
+          {status === "error" && (
+            <p className="mt-1 flex flex-wrap items-center gap-x-1 t-small">
+              <a className="link inline-flex min-h-11 items-center break-all" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+              <CopyEmail email={profile.email} />
+            </p>
+          )}
+        </div>
       )}
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
         <button type="submit" className="btn btn-primary" disabled={sending}>
-          {sending ? "Sending" : "Send message"}
+          {sending ? "Sending…" : "Send message"}
         </button>
         <p className="t-small text-muted">Your details are used only to reply.</p>
       </div>

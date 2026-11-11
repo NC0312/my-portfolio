@@ -34,6 +34,8 @@
   /* Status, used for form feedback only */
   --danger: #b3203a;
   --success: #287c42;
+  /* Form field borders: at least 3:1 against the page (WCAG 1.4.11) */
+  --control: var(--paper-400);
 
   color-scheme: light;
 }
@@ -48,6 +50,7 @@
     --accent: var(--ember-400);
     --danger: #fa6773;
     --success: #5bbd74;
+    --control: var(--paper-600);
     color-scheme: dark;
   }
 }
@@ -61,6 +64,7 @@
   --accent: var(--ember-400);
   --danger: #fa6773;
   --success: #5bbd74;
+  --control: var(--paper-600);
   color-scheme: dark;
 }
 
@@ -106,6 +110,10 @@
 
   main {
     flex: 1;
+  }
+
+  main:focus {
+    outline: none;
   }
 
   ::selection {
@@ -280,7 +288,7 @@
     padding: 10px 14px;
     background: var(--bg);
     color: var(--fg);
-    border: 1px solid var(--border);
+    border: 1px solid var(--control);
     border-radius: 6px;
     font: inherit;
     transition: border-color 200ms;
@@ -290,7 +298,7 @@
     opacity: 0.8;
   }
   .input:hover {
-    border-color: var(--paper-400);
+    border-color: var(--fg);
   }
   .input:focus-visible {
     outline: 2px solid var(--accent);
@@ -388,6 +396,33 @@
    first paint; it is never added for reduced-motion visitors, and a
    2.5s timeout removes it if scripts fail.
 ------------------------------------------------------------------- */
+/* Theme toggle label names the theme it switches to */
+.theme-next-light {
+  display: none;
+}
+:root[data-theme="dark"] .theme-next-dark {
+  display: none;
+}
+:root[data-theme="dark"] .theme-next-light {
+  display: inline;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-next-dark {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-next-light {
+    display: inline;
+  }
+}
+
+/* Theme switch: replace the default crossfade with the circular reveal
+   that ThemeToggle drives from script. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 .motion-pending [data-hero],
 .motion-pending [data-intro],
 .motion-pending [data-reveal] {

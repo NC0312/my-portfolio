@@ -12,7 +12,8 @@ export default function WorkPage() {
     <div className="wrap section pt-12 md:pt-20">
       <h1 data-intro="title" className="t-h1">Work</h1>
       <p data-intro className="t-lead mt-5 max-w-[52ch] text-muted">
-        One production platform and four projects built to learn and to ship.
+        Two in-house platforms in production, and four side projects built to
+        learn and to ship.
       </p>
 
       <ul className="rows mt-14">
@@ -37,7 +38,7 @@ export default function WorkPage() {
                     aria-hidden="true"
                     className="flex h-full items-center justify-center bg-surface font-mono text-lg text-muted"
                   >
-                    {p.title.slice(0, 2)}
+                    {p.mark ?? p.title.slice(0, 2)}
                   </span>
                 )}
               </div>

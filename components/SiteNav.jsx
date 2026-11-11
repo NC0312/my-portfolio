@@ -10,13 +10,25 @@ export default function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  // Close the menu on Escape, on any link click (including the site name,
+  // which lives outside this component) and on Back/Forward.
   useEffect(() => {
     if (!open) return;
+    const close = () => setOpen(false);
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
+    };
+    const onClick = (e) => {
+      if (e.target.closest("a")) close();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("click", onClick);
+    window.addEventListener("popstate", close);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("popstate", close);
+    };
   }, [open]);
 
   const isActive = (href) => pathname === href || pathname.startsWith(`${href}/`);

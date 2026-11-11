@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Download } from "@/components/Icon";
+import { ArrowRight, ArrowUpRight, Download } from "@/components/Icon";
+import CopyEmail from "@/components/CopyEmail";
 import ProjectLinks from "@/components/ProjectLinks";
 import { profile, projects, experience } from "@/lib/data";
 
 export default function Home() {
-  const featured = projects.slice(0, 3);
+  const featured = projects.filter((p) => p.featured);
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function Home() {
           className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4"
         >
           <a href={profile.resume} download className="btn btn-primary">
-            <Download /> Download resume
+            <Download /> Download resume (PDF)
           </a>
           <Link href="/contact" className="btn btn-ghost">
             Get in touch
@@ -44,9 +45,10 @@ export default function Home() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link-quiet inline-flex min-h-11 items-center"
+                  className="link-quiet inline-flex min-h-11 items-center gap-1"
                 >
-                  {s.name}
+                  {s.name} <ArrowUpRight width={12} height={12} />
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               </li>
             ))}
@@ -148,14 +150,17 @@ export default function Home() {
           data-reveal
         >
           <Link href="/contact" className="btn btn-primary">
-            Contact me
+            Get in touch
           </Link>
-          <a
-            href={`mailto:${profile.email}`}
-            className="link inline-flex min-h-11 items-center"
-          >
-            {profile.email}
-          </a>
+          <span className="inline-flex flex-wrap items-center gap-x-1">
+            <a
+              href={`mailto:${profile.email}`}
+              className="link inline-flex min-h-11 items-center break-all"
+            >
+              {profile.email}
+            </a>
+            <CopyEmail email={profile.email} />
+          </span>
         </div>
       </section>
     </>

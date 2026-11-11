@@ -50,7 +50,9 @@ export default function RootLayout({ children }) {
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
         <SmoothScroll />
       </body>

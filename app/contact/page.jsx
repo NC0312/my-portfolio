@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import CopyEmail from "@/components/CopyEmail";
 import { ArrowUpRight } from "@/components/Icon";
 import { profile } from "@/lib/data";
 
@@ -19,10 +20,14 @@ export default function ContactPage() {
         <dl className="flex flex-col gap-8 self-start" data-reveal>
           <div>
             <dt className="t-label text-muted">Email</dt>
-            <dd className="mt-2">
-              <a className="link" href={`mailto:${profile.email}`}>
+            <dd className="mt-1 flex flex-wrap items-center gap-x-2">
+              <a
+                className="link inline-flex min-h-11 items-center break-all"
+                href={`mailto:${profile.email}`}
+              >
                 {profile.email}
               </a>
+              <CopyEmail email={profile.email} className="-ml-2" />
             </dd>
           </div>
           <div>
