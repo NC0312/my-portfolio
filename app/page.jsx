@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Download } from "@/components/Icon";
+import { ArrowRight, ArrowUpRight } from "@/components/Icon";
 import CopyEmail from "@/components/CopyEmail";
 import ProjectLinks from "@/components/ProjectLinks";
 import { profile, projects, experience } from "@/lib/data";
@@ -41,9 +41,9 @@ export default function Home() {
           data-hero-fade
           className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4"
         >
-          <a href={profile.resume} download className="btn btn-primary">
-            <Download /> Download resume (PDF)
-          </a>
+          <Link href="/resume" className="btn btn-primary">
+            View resume <ArrowRight width={14} height={14} />
+          </Link>
           <Link href="/contact" className="btn btn-ghost">
             Get in touch
           </Link>

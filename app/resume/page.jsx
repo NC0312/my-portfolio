@@ -36,12 +36,60 @@ export default function ResumePage() {
             {profile.role}, two years in.
           </p>
         </div>
-        <a data-intro href={profile.resume} download className="btn btn-primary">
-          <Download /> Download PDF
-        </a>
       </div>
 
       <div className="mt-14">
+        <Block id="preview" title="Preview">
+          <div className="flex flex-col gap-6">
+            <figure className="overflow-hidden rounded-lg border border-line bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-12px_rgb(0_0_0/0.18)]">
+              <figcaption className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
+                <span className="t-label text-muted">resume.pdf</span>
+                <a
+                  href={profile.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-quiet t-small inline-flex min-h-11 items-center gap-1"
+                >
+                  Open in new tab <ArrowUpRight width={14} height={14} />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </figcaption>
+              <iframe
+                src={`${profile.resume}#view=FitH`}
+                title="Resume PDF preview"
+                loading="lazy"
+                className="hidden h-[80vh] min-h-[520px] w-full bg-bg md:block"
+              >
+                <p className="t-body p-6">
+                  Your browser can't display the PDF.{" "}
+                  <a href={profile.resume} className="link">Open the resume</a>.
+                </p>
+              </iframe>
+              {/* Phones (notably iOS Safari) don't render inline PDFs, so show a clear way in instead of a blank frame. */}
+              <div className="flex flex-col items-start gap-4 p-6 md:hidden">
+                <p className="t-body text-muted">
+                  Inline preview isn't available on this device.
+                </p>
+                <a
+                  href={profile.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost"
+                >
+                  Open the PDF <ArrowUpRight width={14} height={14} />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </div>
+            </figure>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <a href={profile.resume} download className="btn btn-primary">
+                <Download /> Download PDF
+              </a>
+            </div>
+          </div>
+        </Block>
+
         <Block id="about" title="About">
           <p className="t-body measure">{profile.summary}</p>
         </Block>
