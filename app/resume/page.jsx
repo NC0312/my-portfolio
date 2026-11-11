@@ -41,7 +41,7 @@ export default function ResumePage() {
       <div className="mt-14">
         <Block id="preview" title="Preview">
           <div className="flex flex-col gap-6">
-            <figure className="overflow-hidden rounded-lg border border-line bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-12px_rgb(0_0_0/0.18)]">
+            <figure className="overflow-hidden rounded-lg border border-line bg-surface">
               <figcaption className="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
                 <span className="t-label text-muted">resume.pdf</span>
                 <a
