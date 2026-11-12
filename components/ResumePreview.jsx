@@ -2,14 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Close, Download, Info } from "./Icon";
+import PdfPages from "./PdfPages";
 
 // An "i" button that opens the resume PDF in a modal. It uses the native
 // <dialog>, which traps focus, closes on Esc and hands focus back to the
 // button. The PDF is only mounted while the dialog is open, so nothing
 // downloads until someone asks for it.
+//
+// Wide screens embed the PDF in the browser's own viewer. Phones can't show a
+// PDF in an iframe, so they get the pages drawn by pdf.js instead.
 export default function ResumePreview({ href }) {
   const dialogRef = useRef(null);
-  const [open, setOpen] = useState(false);
+  // null = closed, "frame" = browser PDF viewer, "pages" = pdf.js canvases
+  const [mode, setMode] = useState(null);
 
   // Never leave the page locked if this unmounts while the dialog is open.
   useEffect(() => {
@@ -20,14 +25,14 @@ export default function ResumePreview({ href }) {
 
   const show = () => {
     dialogRef.current?.showModal();
-    setOpen(true);
+    setMode(window.matchMedia("(max-width: 767px)").matches ? "pages" : "frame");
     document.documentElement.style.overflow = "hidden";
   };
 
   const close = () => dialogRef.current?.close();
 
   const handleClose = () => {
-    setOpen(false);
+    setMode(null);
     document.documentElement.style.overflow = "";
   };
 
@@ -71,22 +76,18 @@ export default function ResumePreview({ href }) {
           </div>
 
           <div className="min-h-0 flex-1 overflow-auto">
-            {open && (
+            {mode === "frame" && (
               <iframe
                 src={`${href}#view=FitH`}
                 title="Resume PDF preview"
-                className="hidden h-[70dvh] w-full bg-bg md:block"
+                className="block h-[70dvh] w-full bg-bg"
               >
                 <p className="t-body p-6">
                   Your browser can't display the PDF. Use the buttons below.
                 </p>
               </iframe>
             )}
-            {/* Phones (notably iOS Safari) don't render inline PDFs. */}
-            <p className="t-body p-6 text-muted md:hidden">
-              Inline preview isn't available on this device. Download the PDF
-              or open it in a new tab.
-            </p>
+            {mode === "pages" && <PdfPages href={href} />}
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line px-5 py-4">

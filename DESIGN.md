@@ -115,7 +115,7 @@ Numbers and dates use `tabular-nums` so columns align.
 - Same flat surface as the page: `--bg`, 1px `--border`, 8px radius, no shadow. The backdrop is a dimmed paper-950 tint.
 - Content is mounted only while open, and the page scroll is locked while it is.
 - Footer carries the primary action (Download PDF) and a quiet "Open in new tab" link.
-- Below `md` the PDF isn't embedded (phones can't render it inline), so the dialog explains that and keeps the same two actions.
+- From `md` up the PDF shows in the browser's own viewer. Below `md` phones can't render a PDF in an iframe, so the pages are drawn with pdf.js ([components/PdfPages.jsx](components/PdfPages.jsx)), loaded only when the dialog opens. If that fails, the dialog says so and the two actions still work.
 
 ### Navigation
 
