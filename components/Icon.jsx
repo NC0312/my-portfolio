@@ -44,3 +44,21 @@ export function Contrast(props) {
     </svg>
   );
 }
+
+export function Info(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="8" cy="8" r="6" />
+      <path d="M8 7.25V11" />
+      <path d="M8 5h.01" strokeWidth={2} />
+    </svg>
+  );
+}
+
+export function Close(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 4l8 8M12 4l-8 8" />
+    </svg>
+  );
+}

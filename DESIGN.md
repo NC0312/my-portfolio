@@ -108,6 +108,15 @@ Numbers and dates use `tabular-nums` so columns align.
 - `.rows` draws hairlines between child rows.
 - Rules are pseudo-elements scaled by `--rule`, so the motion script can draw them in.
 
+### Dialog
+
+- Built on the native `<dialog>` (see [components/ResumePreview.jsx](components/ResumePreview.jsx)), so focus is trapped, Esc closes it and focus returns to the trigger. No library.
+- Opened by a round "i" icon button (44px target, `aria-label` and tooltip).
+- Same flat surface as the page: `--bg`, 1px `--border`, 8px radius, no shadow. The backdrop is a dimmed paper-950 tint.
+- Content is mounted only while open, and the page scroll is locked while it is.
+- Footer carries the primary action (Download PDF) and a quiet "Open in new tab" link.
+- Below `md` the PDF isn't embedded (phones can't render it inline), so the dialog explains that and keeps the same two actions.
+
 ### Navigation
 
 - The skip link (`.skip-link`) is first in the tab order and appears on focus.
