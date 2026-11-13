@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { notificationEmail } from '../../../lib/emailTemplates';
 
 export async function POST(req) {
     try {
@@ -38,14 +39,7 @@ export async function POST(req) {
             from: process.env.SMTP_FROM_EMAIL,
             to: process.env.SMTP_USER, // Sending to your email address
             subject: 'New Contact Form Submission',
-            html: `
-                <h1>New Contact Form Submission</h1>
-                <p><strong>Name:</strong> ${firstname} ${lastname}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>Service:</strong> ${service}</p>
-                <p><strong>Message:</strong> ${message}</p>
-            `,
+            html: notificationEmail({ firstname, lastname, email, phone, service, message }),
         };
 
         try {
