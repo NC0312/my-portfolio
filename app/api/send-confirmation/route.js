@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import path from 'path';
+import { confirmationEmail } from '../../../lib/emailTemplates';
 
 export async function POST(req) {
     try {
@@ -34,19 +34,8 @@ export async function POST(req) {
         const mailOptions = {
             from: process.env.SMTP_FROM_EMAIL,
             to: email,
-            subject: 'Thank you for contacting us',
-            html: `
-                <h1>Thank you for reaching out, ${firstname} ${lastname}!</h1>
-                <p>We have received your message regarding ${service} and will get back to you shortly.</p>
-                <p>Best regards,</p>
-                <p>Niket Chawla</p>
-                <img src="cid:logo" style="width: 100px; height: auto;"/>
-            `,
-            attachments: [{
-                filename: 'logo.png',
-                path: path.join(process.cwd(), 'public', 'assets', 'logo.png'),
-                cid: 'logo',
-            }]
+            subject: 'Thanks for getting in touch',
+            html: confirmationEmail({ firstname, service }),
         };
 
         try {
